@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maxime Font-Y-Radua</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #121212;
+      --border: #333;
+      --surface: #1e1e1e;
+      --text: #e0e0e0;
+      --muted: #a0a0a0;
+      --white: #e0e0e0;
+      --accent: #c2a06c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { padding: 40px 0 0; }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    #hero { padding: 100px 0 80px; }
+    .hero-label { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+    .hero-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(38px, 6.4vw, 60px);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.01em;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 48px; }
+    .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 12px;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tag:hover { border-color: #555; color: var(--text); }
+
+    hr { border: none; border-top: 1px solid var(--border); }
+
+    /* SECTIONS */
+    section { padding: 72px 0; }
+    .section-header { margin-bottom: 40px; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; font-style: italic; color: var(--text); }
+
+    /* PRESENTATION */
+    .bio-block { padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .bio-text { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+    .parcours-step {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.2s;
+    }
+    .parcours-step:first-child { border-top: 1px solid var(--border); }
+    .parcours-step:hover { padding-left: 6px; }
+
+    .step-year { font-size: 11px; color: var(--muted); padding-top: 3px; letter-spacing: 0.05em; white-space: nowrap; }
+    .step-label { font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+    .step-title { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
+    .step-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    .step-tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      color: #666;
+      border-radius: 2px;
+    }
+
+    /* SKILLS */
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.2s;
+    }
+    .skill-row:first-child { border-top: 1px solid var(--border); }
+    .skill-row:hover { padding-left: 8px; }
+    .skill-name-wrap { display: flex; align-items: center; gap: 14px; }
+    .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: #555; }
+    .skill-name { font-size: 14px; font-weight: 400; color: var(--text); }
+    .skill-bar-wrap { display: flex; gap: 4px; }
+    .bar { width: 24px; height: 2px; background: var(--border); border-radius: 1px; }
+    .bar.on { background: var(--accent); }
+
+    /* PROJECTS */
+    .project-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.2s;
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-item:hover { padding-left: 8px; }
+    .project-meta { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .project-company { font-size: 12px; color: var(--accent); }
+    .project-year { font-size: 11px; color: var(--muted); }
+    .project-title { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+    .tech-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tech { font-size: 11px; padding: 3px 10px; border: 1px solid var(--border); color: #999; border-radius: 2px; }
+    .project-link { display: inline-block; font-size: 12px; color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .project-link:hover { border-bottom-color: var(--accent); }
+
+    /* FOOTER */
+    footer { padding: 40px 0 60px; border-top: 1px solid var(--border); }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-name { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .footer-btn {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .footer-btn:hover { border-color: #666; color: var(--text); }
+    .footer-year { font-size: 12px; color: #444; }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; animation: fadeIn 0.7s ease forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.25s; }
+    .d3 { animation-delay: 0.4s; }
+    .d4 { animation-delay: 0.55s; }
+
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 600px) {
+      .hero-name { font-size: 32px; }
+      .parcours-step { grid-template-columns: 60px 1fr; gap: 16px; }
+      .nav-links { gap: 20px; }
+      footer .container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <span class="logo">MFYR</span>
+      <ul class="nav-links">
+        <li><a href="#presentation">Parcours</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#projects">Projets</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="hero">
+    <div class="container">
+      <p class="hero-label fade-in d1">Portfolio — BTS SIO option SLAM</p>
+      <h1 class="hero-name fade-in d2">Maxime<br>Font-Y-Radua</h1>
+      <p class="hero-sub fade-in d3">Étudiant en développement, cinq stages en entreprise à mon actif.</p>
+      <div class="hero-tags fade-in d4">
+        <span class="tag">Python</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Java</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container"><hr></div>
+
+  <!-- PARCOURS -->
+  <section id="presentation">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-title">Parcours</span>
+      </div>
+
+      <div class="bio-block reveal">
+        <p class="bio-text">
+          Étudiant passionné par le développement, je suis actuellement en BTS SIO option SLAM au lycée Le Rebours après avoir obtenu mon Bac Pro Systèmes Numériques. Au fil de ma formation, j'ai étudié plusieurs langages — Python, Java, CSS et SQL — et accumulé cinq stages en entreprise : quatre à la Caisse des dépôts, centrés sur l'automatisation et la cybersécurité, et un chez Mattea Services, où j'ai conçu et développé seul deux sites vitrines et une application web, tout en menant une veille sur les assistants IA pour le développement.
+        </p>
+      </div>
+
+      <div style="margin-top:0;">
+        <div class="parcours-step reveal">
+          <span class="step-year">2025 →</span>
+          <div>
+            <p class="step-label">Formation actuelle</p>
+            <p class="step-title">BTS SIO — option SLAM</p>
+            <p class="step-desc">Le BTS SIO (Services Informatiques aux Organisations) option SLAM (Solutions Logicielles et Applications Métiers) forme aux métiers du développement applicatif. Au programme : conception d'applications, bases de données, développement web & mobile, gestion de projets informatiques.</p>
+            <div class="step-tags">
+              <span class="step-tag">Python</span>
+              <span class="step-tag">Java</span>
+              <span class="step-tag">SQL</span>
+              <span class="step-tag">CSS</span>
+              <span class="step-tag">Développement web</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parcours-step reveal">
+          <span class="step-year">2022 – 2025</span>
+          <div>
+            <p class="step-label">Diplôme</p>
+            <p class="step-title">Bac Pro Systèmes Numériques</p>
+            <p class="step-desc">Formation technique axée sur les systèmes informatiques et réseaux. Première approche de la programmation, des infrastructures numériques et des environnements professionnels IT.</p>
+            <div class="step-tags">
+              <span class="step-tag">Lycée Louis Armand</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parcours-step reveal">
+          <span class="step-year">2025 – 2026</span>
+          <div>
+            <p class="step-label">Stage — Mattea Services</p>
+            <p class="step-title">Stage en développement web</p>
+            <p class="step-desc">Conception, développement et déploiement en totale autonomie de deux sites vitrines actuellement en ligne et d'une application web de gestion des appels d'offres pour des prestations de ménage, ainsi qu'une veille sur des assistants IA pour le développement (Claude AI, Claude Code).</p>
+            <div class="step-tags">
+              <span class="step-tag">HTML / CSS / JS</span>
+              <span class="step-tag">React</span>
+              <span class="step-tag">Next.js</span>
+              <span class="step-tag">Claude AI</span>
+              <span class="step-tag">Claude Code</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parcours-step reveal">
+          <span class="step-year">2024 – 2025</span>
+          <div>
+            <p class="step-label">Stage — Caisse des dépôts</p>
+            <p class="step-title">Stage en Informatique</p>
+            <p class="step-desc">Recherche et étude de l'IA GitHub Copilot, suivi et organisation via Excel, sensibilisation à la cybersécurité et rédaction de comptes rendus de réunions.</p>
+            <div class="step-tags">
+              <span class="step-tag">GitHub Copilot</span>
+              <span class="step-tag">Excel</span>
+              <span class="step-tag">Cybersécurité</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parcours-step reveal">
+          <span class="step-year">2023 – 2024</span>
+          <div>
+            <p class="step-label">Stage — Informatique Caisse des dépôts</p>
+            <p class="step-title">Stage en Développement</p>
+            <p class="step-desc">Développement d'un script d'automatisation en KSH et Python, amélioration continue du script, recherche et étude des langages utilisés.</p>
+            <div class="step-tags">
+              <span class="step-tag">Python</span>
+              <span class="step-tag">KSH</span>
+              <span class="step-tag">SQL</span>
+              <span class="step-tag">Automatisation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parcours-step reveal">
+          <span class="step-year">2021 – 2022</span>
+          <div>
+            <p class="step-label">Stage — Caisse des dépôts DSI RH</p>
+            <p class="step-title">Stage Informatique</p>
+            <p class="step-desc">Rédaction de comptes rendus de réunions, étude sur le langage Java, découverte des processus de gestion du temps et de la paie.</p>
+            <div class="step-tags">
+              <span class="step-tag">Java</span>
+              <span class="step-tag">Gestion RH</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parcours-step reveal">
+          <span class="step-year">2020 – 2021</span>
+          <div>
+            <p class="step-label">Stage — Caisse des dépôts</p>
+            <p class="step-title">Observation des métiers</p>
+            <p class="step-desc">Découverte des processus de gestion du temps et de la paie, initiation à la gestion administrative et au suivi des données sociales.</p>
+            <div class="step-tags">
+              <span class="step-tag">Comptabilité RH</span>
+              <span class="step-tag">Données sociales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-title">Compétences</span>
+      </div>
+      <div>
+        <div class="skill-row reveal">
+          <div class="skill-name-wrap"><div class="skill-dot"></div><span class="skill-name">Python</span></div>
+          <div class="skill-bar-wrap"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-name-wrap"><div class="skill-dot"></div><span class="skill-name">SQL</span></div>
+          <div class="skill-bar-wrap"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-name-wrap"><div class="skill-dot"></div><span class="skill-name">JavaScript</span></div>
+          <div class="skill-bar-wrap"><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-name-wrap"><div class="skill-dot"></div><span class="skill-name">Java</span></div>
+          <div class="skill-bar-wrap"><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-name-wrap"><div class="skill-dot"></div><span class="skill-name">CSS / HTML</span></div>
+          <div class="skill-bar-wrap"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-name-wrap"><div class="skill-dot"></div><span class="skill-name">GitHub</span></div>
+          <div class="skill-bar-wrap"><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-title">Projets</span>
+      </div>
+      <div>
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Stage — Mattea Services</span>
+            <span class="project-year">2025 – 2026</span>
+          </div>
+          <h3 class="project-title">MATTEA AO — Gestion des appels d'offres</h3>
+          <p class="project-desc">Application web conçue et développée seul, de A à Z, pour centraliser la veille et le suivi des appels d'offres de prestations de ménage : authentification des utilisateurs et tableau de bord de suivi des dossiers.</p>
+          <div class="tech-list">
+            <span class="tech">React</span>
+            <span class="tech">Next.js</span>
+            <span class="tech">Déploiement</span>
+          </div>
+          <a href="https://mattea-ao.vercel.app" target="_blank" class="project-link">Voir l'application →</a>
+        </div>
+
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Stage — Mattea Services</span>
+            <span class="project-year">2025 – 2026</span>
+          </div>
+          <h3 class="project-title">Le Victor Hugo — Site vitrine</h3>
+          <p class="project-desc">Conception et développement complet d'un site vitrine pour un espace de bureaux à louer à Levallois-Perret : présentation des espaces, galerie photo et formulaire de réservation en ligne.</p>
+          <div class="tech-list">
+            <span class="tech">HTML</span>
+            <span class="tech">CSS</span>
+            <span class="tech">JavaScript</span>
+          </div>
+          <a href="https://levictorhugo.fr" target="_blank" class="project-link">Voir le site →</a>
+        </div>
+
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Stage — Mattea Services</span>
+            <span class="project-year">2025 – 2026</span>
+          </div>
+          <h3 class="project-title">Mattea Services — Site vitrine</h3>
+          <p class="project-desc">Site vitrine de l'entreprise, avec présentation des offres et un simulateur interactif permettant aux prospects d'estimer leur gain fiscal sur leur contribution DOETH.</p>
+          <div class="tech-list">
+            <span class="tech">HTML</span>
+            <span class="tech">CSS</span>
+            <span class="tech">JavaScript</span>
+          </div>
+          <a href="https://mattea-services.vercel.app" target="_blank" class="project-link">Voir le site →</a>
+        </div>
+
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Stage — Mattea Services</span>
+            <span class="project-year">2025 – 2026</span>
+          </div>
+          <h3 class="project-title">Veille sur les assistants IA</h3>
+          <p class="project-desc">Recherche et étude d'assistants IA pour le développement — Claude AI et Claude Code — avec suivi structuré des observations et comptes rendus réguliers.</p>
+          <div class="tech-list">
+            <span class="tech">Claude AI</span>
+            <span class="tech">Claude Code</span>
+          </div>
+        </div>
+
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Projet scolaire — BTS SIO SLAM</span>
+            <span class="project-year">2025 – 2026</span>
+          </div>
+          <h3 class="project-title">Mini-jeu d'investissement en Java</h3>
+          <p class="project-desc">Jeu réalisé en cours autour de la mécanique d'investissement : miser de l'argent, le récupérer avec un gain si le pari réussit, tout perdre s'il échoue, ou patienter pour recevoir de l'argent quand la caisse est vide. Construit autour de plusieurs objets (joueur, investissement) avec encapsulation des données.</p>
+          <div class="tech-list">
+            <span class="tech">Java</span>
+            <span class="tech">POO</span>
+            <span class="tech">Encapsulation</span>
+          </div>
+        </div>
+
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Informatique Caisse des dépôts</span>
+            <span class="project-year">2024 – 2025</span>
+          </div>
+          <h3 class="project-title">Veille sur GitHub Copilot</h3>
+          <p class="project-desc">Recherche et étude de l'IA GitHub Copilot, avec suivi et organisation des observations via Excel.</p>
+          <div class="tech-list">
+            <span class="tech">GitHub Copilot</span>
+            <span class="tech">Excel</span>
+          </div>
+        </div>
+
+        <div class="project-item reveal">
+          <div class="project-meta">
+            <span class="project-company">Informatique Caisse des dépôts</span>
+            <span class="project-year">2023 – 2024</span>
+          </div>
+          <h3 class="project-title">Script d'automatisation & Base de données</h3>
+          <p class="project-desc">Développement d'un script Python et KSH automatisant la création et le remplissage d'une table en base de données. Intégration de mini-jeux interactifs — Puissance 4 et jeu de rapidité — accessibles depuis la BDD.</p>
+          <div class="tech-list">
+            <span class="tech">Python</span>
+            <span class="tech">KSH</span>
+            <span class="tech">SQL</span>
+            <span class="tech">Automatisation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span class="footer-name">Maxime Font-Y-Radua</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/maxime-font-y-radua-989789324/" target="_blank" class="footer-btn">LinkedIn →</a>
+        <a href="https://github.com/fyrdmaxime1-crypto" target="_blank" class="footer-btn">GitHub →</a>
+        <a href="mailto:maxime.fontyradua12@gmail.com" class="footer-btn">Mail →</a>
+        <span class="footer-year">2025 – 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
